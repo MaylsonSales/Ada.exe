@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>ADA.EXE — Assistente com IA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="boot-screen" aria-hidden="true">
+    <div class="boot-logo">ADA.EXE</div>
+    <div class="boot-subtitle">Inicializando inteligência artificial</div>
+    <div class="loading-container" aria-hidden="true"><div class="loading-bar"><div class="loading-fill"></div></div></div>
+  </div>
+
+  <div class="background"></div>
+  <div class="hud-grid"></div>
+
+  <main class="face-container">
+    <div class="top-actions">
+      <button class="settings-button" id="settingsButton" type="button" aria-haspopup="dialog" aria-controls="settingsDialog">
+        <span aria-hidden="true">⚙</span> CONFIGURAR IA
+      </button>
+    </div>
+
+    <div class="hud-circle" aria-hidden="true"></div>
+    <div class="hud-circle second" aria-hidden="true"></div>
+    <div class="hud-circle third" aria-hidden="true"></div>
+
+    <div class="ai-face" aria-hidden="true">
+      <div class="forehead-light"></div>
+      <div class="eyes"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
+      <div class="face-line left"></div><div class="face-line right"></div>
+      <div class="mouth" id="mouth"></div>
+      <div class="energy-ring"></div>
+    </div>
+
+    <h1 class="ada-title">ADA.EXE</h1>
+    <div class="ai-indicator" id="aiIndicator"><span class="dot" aria-hidden="true"></span><span id="aiIndicatorText">MODO LOCAL</span></div>
+
+    <section class="speech-box" role="status" aria-live="polite" aria-atomic="true">
+      <span id="speechText">Inicializando sistema...</span>
+    </section>
+
+    <form class="command-form" id="commandForm">
+      <label class="sr-only" for="commandInput">Pergunte à ADA</label>
+      <input id="commandInput" type="text" autocomplete="off" maxlength="2000" placeholder="Escreva uma pergunta ou comando" aria-describedby="assistiveStatus">
+      <button class="submit-button" id="submitButton" type="submit">ENVIAR</button>
+      <button class="microphone-button" id="microphoneButton" type="button" aria-pressed="false">ATIVAR MICROFONE</button>
+    </form>
+    <p class="assistive-status" id="assistiveStatus" aria-live="polite"></p>
+
+    <div class="status-bar" aria-label="Status do sistema">
+      <div class="status-item"><span class="dot"></span>SISTEMA ONLINE</div>
+      <div class="status-item"><span class="dot"></span>VOZ ATIVA</div>
+      <div class="status-item"><span class="dot"></span>ADA CORE V8</div>
+    </div>
+  </main>
+
+  <div class="audio-bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <div class="modal-backdrop" id="settingsDialog" hidden>
+    <section class="settings-dialog" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" aria-describedby="settingsHelp">
+      <div class="dialog-header">
+        <div><p class="eyebrow">NÚCLEO DE INTELIGÊNCIA</p><h2 id="settingsTitle">Configurar IA</h2></div>
+        <button class="close-button" id="closeSettingsButton" type="button" aria-label="Fechar configuração">×</button>
+      </div>
+
+      <form id="settingsForm" novalidate>
+        <label for="providerSelect">Provedor</label>
+        <select id="providerSelect" name="provider">
+          <option value="gemini">Google Gemini — camada gratuita</option>
+          <option value="openrouter">OpenRouter — modelos gratuitos</option>
+          <option value="local">Modo local — sem chave</option>
+        </select>
+
+        <div class="provider-description" id="providerDescription"></div>
+
+        <div id="remoteSettings">
+          <label for="apiKeyInput">Chave de API</label>
+          <div class="key-field"><input id="apiKeyInput" name="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Cole sua chave aqui"><button id="toggleKeyButton" type="button" aria-label="Mostrar chave">MOSTRAR</button></div>
+          <label for="modelInput">Modelo</label>
+          <input id="modelInput" name="model" type="text" autocomplete="off" spellcheck="false">
+        </div>
+
+        <p class="settings-help" id="settingsHelp">A chave fica somente no armazenamento local deste navegador. Não a coloque em sites públicos nem a envie para outras pessoas.</p>
+        <p class="settings-status" id="settingsStatus" aria-live="polite"></p>
+
+        <div class="dialog-actions">
+          <button id="clearKeyButton" class="secondary-button" type="button">REMOVER CHAVE</button>
+          <button class="primary-button" type="submit">SALVAR E ATIVAR</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script src="knowledge.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
